@@ -19,13 +19,13 @@ By calling the `maufs` command, it will present you with all of the options.
 
 Assuming the following layout:
 
-    **platform** in /path/to/base/platform
-    **pluginA** in /path/to/plugins/a
-    **pluginB** in /path/to/plugins/b
+> **platform** in /path/to/base/platform
+> **pluginA** in /path/to/plugins/a
+> **pluginB** in /path/to/plugins/b
     
 and a client site which should be empty
 
-    **client** in /path/to/clients/client/install
+> **client** in /path/to/clients/client/install
 
 To get started, use the maufs mount:mount command.  It will prompt you on which libraries to add, and where you want to store local files. If client/install contains the mounted directory, we can also have a secondary directory which will only contain any files that we change or create. Configuration, logs, etc. will all be placed here.
 
@@ -33,7 +33,7 @@ Here is an example of the process:
 
     cd client
     mkdir install
-    mkdir files  
+    mkdir files
     maufs mount:init install
     
     Enter the libraries you'd like to add.  Leave a blank line when you are done.
