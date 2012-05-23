@@ -8,6 +8,7 @@ use Symfony\Component\Console\Application as BaseApplication;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Finder\Finder;
 
 class Application extends BaseApplication
 {
@@ -54,16 +55,17 @@ class Application extends BaseApplication
      */
     protected function registerCommands()
     {
-        $this->add(new Command\MountCommand());
-        $this->add(new Command\RemountCommand());
-        $this->add(new Command\UnmountCommand());
+        $finder = new Finder();
+        $finder
+            ->files()
+            ->name('*Command.php')
+            ->notName('Command.php')
+            ->in(__DIR__.'/../Command');
         
-        $this->add(new Command\DescribeCommand());
-        
-        $this->add(new Command\AddLibraryCommand());
-        $this->add(new Command\RemoveLibraryCommand());
-        
-        $this->add(new Command\ChangeModificationsCommand());
+        foreach ($finder as $file) {
+            $class = "Maufs\\Command\\" . basename($file, ".php");
+            $this->add(new $class());
+        }
     }
     
     /**
