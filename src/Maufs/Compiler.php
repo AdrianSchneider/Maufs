@@ -9,6 +9,10 @@ class Compiler
 {
     protected $version = '1.0';
     
+    /**
+     * Compiles into a PHAR active
+     * @param    string        Output filename
+     */
     public function compile($pharFile = 'maufs.phar') 
     {
         if (file_exists($pharFile)) {
@@ -50,8 +54,15 @@ class Compiler
         
         $phar->setStub($this->getStub());
         $phar->stopBuffering();
+        unset($phar);
     }
     
+    /**
+     * Add a file to the archive
+     * @param    \Phar
+     * @param    string        Filename to add
+     * @param    boolean       Strip whitespace
+     */
     protected function addFile($phar, $file, $strip = true)
     {
         $path = str_replace(dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR, '', $file->getRealPath());
@@ -65,8 +76,13 @@ class Compiler
         
         $content = str_replace('@package_version@', $this->version, $content);
         
-        $phar->addFromString($path, $content);    }
+        $phar->addFromString($path, $content);    
+    }
     
+    /**
+     * Add binaries to the phar
+     * @param    \Phar
+     */
     protected function addBin($phar)
     {
         $content = file_get_contents(__DIR__.'/../../bin/maufs');
@@ -74,6 +90,11 @@ class Compiler
         $phar->addFromString('bin/maufs', $content);
     }
     
+    /**
+     * Strip whitespace from a string
+     * @param    string        Code source
+     * @return   string        Code source without extraneous w/s
+     */
     protected function stripWhitespace($source)
     {
         if (!function_exists('token_get_all')) {
@@ -102,20 +123,20 @@ class Compiler
         return $output;
     }
     
+    /**
+     * Generates the stub for the phar
+     * @param    string    PHAR stub
+     */
     protected function getStub()
     {
-        $stub = <<<EOF
+        return <<<'EOF'
 #!/usr/bin/env php
 <?php
 
-Phar::mapPhar('maufs.phar');
-        
-EOF;
-        
-        return $stub .= <<<'EOF'
+Phar::mapPhar('maufs.phar');        
 require 'phar://maufs.phar/bin/maufs';
         
-__HALT_COMPILER();
+__HALT_COMPILER(); ?>
 EOF;
     }
 }
