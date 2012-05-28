@@ -2,4 +2,5 @@
 /.settings
 /.project
 /composer.phar
+/maufs.phar
 /vendor
