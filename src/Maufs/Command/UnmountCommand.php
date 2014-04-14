@@ -15,7 +15,7 @@ class UnmountCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('mount:unmount')
+            ->setName('unmount')
             ->setRequiresRoot()
             ->setDescription('Mount paths to create a stacked filesystem.')
             ->addArgument('target', InputArgument::OPTIONAL, 'The target of the new mounted directory.', '.')

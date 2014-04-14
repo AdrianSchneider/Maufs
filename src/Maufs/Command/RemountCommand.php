@@ -17,7 +17,7 @@ class RemountCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('mount:remount')
+            ->setName('remount')
             ->setRequiresRoot()
             ->setDescription('Remount a mount (if config exists).')
             ->addArgument('target', InputArgument::OPTIONAL, 'The target of the new mounted directory.', '.')

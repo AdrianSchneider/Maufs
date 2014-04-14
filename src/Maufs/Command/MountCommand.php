@@ -16,7 +16,7 @@ class MountCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('mount:init')
+            ->setName('init')
             ->setRequiresRoot()
             ->setDescription('Mount paths to create a stacked filesystem.')
             ->addArgument('target', InputArgument::OPTIONAL, 'The target of the new mounted directory.', '.')

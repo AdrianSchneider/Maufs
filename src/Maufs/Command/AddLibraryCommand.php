@@ -17,7 +17,7 @@ class AddLibraryCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('mount:dirs:add')
+            ->setName('dirs:add')
             ->setRequiresRoot()
             ->setDescription('Add another library to the stack.')
             ->addArgument('path', InputArgument::REQUIRED, 'The path you\'d like to add.')

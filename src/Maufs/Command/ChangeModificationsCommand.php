@@ -14,7 +14,7 @@ class ChangeModificationsCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('mount:dirs:modifications')
+            ->setName('dirs:modifications')
             ->setRequiresRoot()
             ->setDescription('Change the local modifications directory.')
             ->addArgument('path', InputArgument::REQUIRED, 'The new path you\'d like to use for local modifications.')

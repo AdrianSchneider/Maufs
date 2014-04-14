@@ -17,7 +17,7 @@ class RemoveLibraryCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('mount:dirs:remove')
+            ->setName('dirs:remove')
             ->setRequiresRoot()
             ->setDescription('Remove a library from  the stack.')
             ->addArgument('path', InputArgument::REQUIRED, 'The path you\'d like to remove (partial is fine).')

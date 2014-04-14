@@ -13,7 +13,7 @@ class DescribeCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('mount:describe')
+            ->setName('describe')
             ->setDescription('See information about a given directory.')
             ->addArgument('target', InputArgument::OPTIONAL, 'The target to look at', '.');
     }
